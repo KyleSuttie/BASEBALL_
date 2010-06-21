@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  team: MyString
+  AVG: 1.5
+  HR: 1
+  RBI: 1
+  RUNS: 1
+  SB: 1
+  OPS: 1.5
+
+two:
+  name: MyString
+  team: MyString
+  AVG: 1.5
+  HR: 1
+  RBI: 1
+  RUNS: 1
+  SB: 1
+  OPS: 1.5

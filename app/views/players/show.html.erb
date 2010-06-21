@@ -1,0 +1,43 @@
+<p>
+  <b>Name:</b>
+  <%=h @player.name %>
+</p>
+
+<p>
+  <b>Team:</b>
+  <%=h @player.team %>
+</p>
+
+<p>
+  <b>Avg:</b>
+  <%=h @player.AVG %>
+</p>
+
+<p>
+  <b>Hr:</b>
+  <%=h @player.HR %>
+</p>
+
+<p>
+  <b>Rbi:</b>
+  <%=h @player.RBI %>
+</p>
+
+<p>
+  <b>Runs:</b>
+  <%=h @player.RUNS %>
+</p>
+
+<p>
+  <b>Sb:</b>
+  <%=h @player.SB %>
+</p>
+
+<p>
+  <b>Ops:</b>
+  <%=h @player.OPS %>
+</p>
+
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', players_path %>

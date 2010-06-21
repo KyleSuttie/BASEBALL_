@@ -1,0 +1,37 @@
+<h1>Listing players</h1>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th><%= link_to 'Name', :method => :sort_name %></th>
+    <th><%= link_to 'Team', :method => :sort_team %></th>
+    <th><%= link_to 'AVG', :method => :sort_avg %></th>
+    <th><%= link_to 'HR', :method => :sort_hr %></th>
+    <th><%= link_to 'RBI', :method => :sort_rbi %></th>
+    <th><%= link_to 'Runs', :method => :sort_runs %></th>
+    <th><%= link_to 'SB', :method => :sort_sb %></th>
+    <th><%= link_to 'OPS', :method => :sort_ops %></th>
+  </tr>
+<% num = 0 %>
+<% @players.each do |player| %>
+  <tr>
+    <td><%= num = num + 1 %></td>
+    <td><%=h player.name %></td>
+    <td><%=h player.team %></td>
+    <td><%=h player.AVG %></td>
+    <td><%=h player.HR %></td>
+    <td><%=h player.RBI %></td>
+    <td><%=h player.RUNS %></td>
+    <td><%=h player.SB %></td>
+    <td><%=h player.OPS %></td>
+    <!--<td><%= link_to 'Show', player %></td>
+    	<td><%= link_to 'Edit', edit_player_path(player) %></td>
+    	<td><%= link_to 'Destroy', player, :confirm => 'Are you sure?', :method => :delete %></td>
+    -->
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<!--<%= link_to 'New player', new_player_path %>-->
