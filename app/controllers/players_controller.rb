@@ -9,7 +9,7 @@ class PlayersController < ApplicationController
       format.xml  { render :xml => @players }
     end
   end
-
+ 
   # GET /players/1
   # GET /players/1.xml
   def show
@@ -81,31 +81,59 @@ class PlayersController < ApplicationController
     end
   end
 
+
+  def clear_list
+	Player.delete_all
+	redirect_to :action => 'index'
+  end
+
+  def clear_all
+	Player.delete_all
+  end
+
   def sort_name
+	self.clear_all
+	25.times{Player.create(:name => 'John Smith', :team => 'Boston Red Sox', :AVG => 0.300, :HR => 					20, :RBI => 40, :RUNS => 30, :SB => 3, :OPS => 0.800)
+		}
+	redirect_to :action => 'index'
   end
 
   def sort_team
+	self.clear_all
+	Player.create(:name => 'Joe Namath', :team => 'Chicago White Sox', :AVG => 0.200, :HR => 					10, :RBI => 43, :RUNS => 20, :SB => 6, :OPS => 0.726)
+	redirect_to :action => 'index'
   end
 
   def sort_avg
+	self.clear_all
+	Player.create(:name => 'Babe Ruth', :team => 'NY Yankees', :AVG => 0.600, :HR => 					200, :RBI => 400, :RUNS => 300, :SB => 30, :OPS => 0.900)
+	redirect_to :action => 'index'
   end
 
   def sort_hr
+	self.clear_all
+	redirect_to :action => 'index'
   end
 
   def sort_rbi
+	self.clear_all
+	redirect_to :action => 'index'
   end
 
   def sort_runs
+	self.clear_all
+	redirect_to :action => 'index'
   end
 
   def sort_sb
+	self.clear_all
+	redirect_to :action => 'index'
   end
 
   def sort_ops
+	self.clear_all
+	redirect_to :action => 'index'
   end
-
-
 
 
 
