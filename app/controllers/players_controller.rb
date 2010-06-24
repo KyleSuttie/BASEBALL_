@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  include REXML
   # GET /players
   # GET /players.xml
   def index
@@ -91,22 +92,60 @@ class PlayersController < ApplicationController
 	Player.delete_all
   end
 
+  def default_data
+	self.clear_all
+	require "rexml/document"
+
+	file = File.new("baseball_stats.xml")
+	doc = REXML::Document.new file
+	root = doc.root
+	team = root.elements[2].elements[2].elements[2]
+	inc = 19
+
+	9.times{
+		inc = inc + 1 
+		player = team.elements[inc]
+
+		player_name = player.elements[1].text + ' ' + player.elements[2].text
+		player_team = team.elements[2].text
+		player_avg = (Float(player.elements[8].text)) / (Float(player.elements[6].text))
+		player_hr = Integer(player.elements[11].text)
+		player_rbi = Integer(player.elements[12].text)
+		player_runs = Integer(player.elements[7].text)
+		player_sb = Integer(player.elements[13].text)
+
+		hits = Float(player.elements[8].text)
+		walks = Float(player.elements[18].text)
+		hbp = Float(player.elements[20].text)
+		sacs = Float(player.elements[16].text)
+		bases = hits + ((Float(player.elements[9].text))*2) + ((Float(player.elements[10].text))*3) + 
+			((Float(player.elements[11].text))*4)
+		bats = Float(player.elements[6].text)
+		
+		obp = (hits + walks + hbp) / (bats + walks + sacs)
+		sp = bases / bats
+		player_ops = obp + sp
+
+
+		Player.create(:name => player_name, :team => player_team, :AVG => player_avg, :HR => 					player_hr, :RBI => player_rbi, :RUNS => player_runs, :SB => player_sb,
+				 :OPS => player_ops)
+		
+	}
+	redirect_to :action => 'index'
+  end
+
   def sort_name
 	self.clear_all
-	25.times{Player.create(:name => 'John Smith', :team => 'Boston Red Sox', :AVG => 0.300, :HR => 					20, :RBI => 40, :RUNS => 30, :SB => 3, :OPS => 0.800)
-		}
 	redirect_to :action => 'index'
   end
 
   def sort_team
 	self.clear_all
-	Player.create(:name => 'Joe Namath', :team => 'Chicago White Sox', :AVG => 0.200, :HR => 					10, :RBI => 43, :RUNS => 20, :SB => 6, :OPS => 0.726)
 	redirect_to :action => 'index'
   end
 
   def sort_avg
 	self.clear_all
-	Player.create(:name => 'Babe Ruth', :team => 'NY Yankees', :AVG => 0.600, :HR => 					200, :RBI => 400, :RUNS => 300, :SB => 30, :OPS => 0.900)
 	redirect_to :action => 'index'
   end
 
@@ -116,7 +155,7 @@ class PlayersController < ApplicationController
   end
 
   def sort_rbi
-	self.clear_all
+	self.clear_all	
 	redirect_to :action => 'index'
   end
 

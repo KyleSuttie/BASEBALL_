@@ -1,5 +1,7 @@
 <h1>MLB Player Stats. from 1998</h1>
-
+<th><% form_remote_tag :url => { :action => 'default_data', :id => 1} do %>
+	<%= submit_tag "Load Default Data" %>
+    <% end %></th>
 <table>
   <tr>
     <th>#</th>
