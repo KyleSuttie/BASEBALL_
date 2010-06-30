@@ -3,13 +3,13 @@ class CreatePlayers < ActiveRecord::Migration
     create_table :players do |t|
       t.string :name
       t.string :team
-      t.float :AVG
+      t.string :AVG
       t.integer :HR
       t.integer :RBI
       t.integer :RUNS
       t.integer :SB
-      t.float :OPS
-
+      t.string :OPS
+      t.integer :GAMES
       t.timestamps
     end
   end

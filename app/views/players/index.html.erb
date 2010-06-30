@@ -1,46 +1,55 @@
 <h1>MLB Player Stats. from 1998</h1>
-<th><% form_remote_tag :url => { :action => 'default_data', :id => 1} do %>
-	<%= submit_tag "Load Default Data" %>
-    <% end %></th>
 <table>
   <tr>
     <th>#</th>
-    <th><% form_remote_tag :url => { :action => 'sort_name', :id => 1} do %>
+    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'name',
+                                     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
 	<%= submit_tag "Name" %>
     <% end %></th>
 
-    <th><% form_remote_tag :url => { :action => 'sort_team', :id => 1} do %>
+    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'team',
+				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
 	<%= submit_tag "Team" %>
     <% end %></th>
 
-    <th><% form_remote_tag :url => { :action => 'sort_avg', :id => 1} do %>
+    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'AVG',
+				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
 	<%= submit_tag "AVG" %>
     <% end %></th>
 
-    <th><% form_remote_tag :url => { :action => 'sort_hr', :id => 1} do %>
+    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'HR',
+				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
 	<%= submit_tag "HR" %>
     <% end %></th>
 
-    <th><% form_remote_tag :url => { :action => 'sort_rbi', :id => 1} do %>
+    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'RBI',
+				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
 	<%= submit_tag "RBI" %>
     <% end %></th>
     
-    <th><% form_remote_tag :url => { :action => 'sort_runs', :id => 1} do %>
+    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'Runs',
+				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
 	<%= submit_tag "Runs" %>
     <% end %></th>
 
-    <th><% form_remote_tag :url => { :action => 'sort_sb', :id => 1} do %>
+    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'SB',
+				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
 	<%= submit_tag "SB" %>
     <% end %></th>
 
-    <th><% form_remote_tag :url => { :action => 'sort_ops', :id => 1} do %>
+    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'OPS',
+				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
 	<%= submit_tag "OPS" %>
+    <% end %></th>
+    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'GAMES',
+				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
+	<%= submit_tag "Games Played" %>
     <% end %></th>
   </tr>
 <% num = 0 %>
 <% @players.each do |player| %>
   <tr>
-    <td><%= num = num + 1 %></td>
+    <td><%= num += 1 %></td>
     <td><%=h player.name %></td>
     <td><%=h player.team %></td>
     <td><%=h number_with_precision(player.AVG, 3) %></td>
@@ -49,22 +58,8 @@
     <td><%=h player.RUNS %></td>
     <td><%=h player.SB %></td>
     <td><%=h number_with_precision(player.OPS, 3) %></td>
-
-    <!--<td><%= link_to 'Show', player %></td>
-    <td><%= link_to 'Edit', edit_player_path(player) %></td>
-    <td><%= link_to 'Destroy', player, :confirm => 'Are you sure?', :method => :delete %></td>
-    -->
-    
+    <td><%=h player.GAMES %></td>
   </tr>
 <% end %>
 </table>
-
 <br />
-
-  <% form_remote_tag :url => { :action => 'clear_list', :id => 1} do %>
-	<%= submit_tag "Clear List" %>
-    <% end %>
-
-<!--<%= link_to 'New player', new_player_path %>-->
-
-
