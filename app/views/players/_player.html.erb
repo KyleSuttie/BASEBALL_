@@ -1,4 +1,9 @@
+<% if Integer(params[:num]) == 0 %>
+  <% params[:num] = ((Integer(params[:page]) - 1) * 25)%>
+<% end %>
 <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
+  <% params[:num] = (Integer(params[:num]) + 1) %>
+  <td><%= params[:num] %></td>
   <td><%=h player.name %></td>
   <td><%=h player.team %></td>
   <td><%=h number_with_precision(player.AVG, 3) %></td>
@@ -9,4 +14,3 @@
   <td><%=h number_with_precision(player.OPS, 3) %></td>
   <td><%=h player.GAMES %></td>
 </tr>
-

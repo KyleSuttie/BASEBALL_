@@ -27,5 +27,3 @@ class PlayersController < ApplicationController
     redirect_to :action => 'index', :sort => params[:sort], :dir => params[:dir], :page => params[:page]
   end
 end
-
-#:all, :conditions => "AVG != 'NaN'", :order => "AVG DESC", :limit => 25

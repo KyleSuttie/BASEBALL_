@@ -1,18 +1,36 @@
-<th>
-  <% if Integer(params[:page]) > 1 %>
+<% if Integer(params[:page]) > 1 %>
+  <th>
+    <% form_remote_tag :url => {:action => 'sort',
+			        :dir => params[:dir],
+	  		        :sort => params[:sort],
+                                :page => 1} do %>
+      <%= submit_tag "First" %>
+    <% end %>
+  </th>
+  <th>
     <% form_remote_tag :url => {:action => 'sort',
 			        :dir => params[:dir],
 	  		        :sort => params[:sort],
                                 :page => (Integer(params[:page]) - 1)} do %>
       <%= submit_tag "Previous 25" %>
     <% end %>
-  <% end %>
-  <% if Integer(params[:page]) < 25 %>
+  </th>
+<% end %>
+<% if Integer(params[:page]) < 25 %>
+  <th>
     <% form_remote_tag :url => {:action => 'sort',
 			        :dir => params[:dir],
 	  		        :sort => params[:sort],
                                 :page => (Integer(params[:page]) + 1)} do %>
       <%= submit_tag "Next 25" %>
     <% end %>
-  <% end %>
-</th>
+  </th>
+  <th>
+    <% form_remote_tag :url => {:action => 'sort',
+			        :dir => params[:dir],
+	  		        :sort => params[:sort],
+                                :page => 25} do %>
+      <%= submit_tag "Last" %>
+    <% end %>
+  </th>
+<% end %>

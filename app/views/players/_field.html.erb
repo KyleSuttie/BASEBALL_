@@ -1,3 +1,6 @@
+<% if field == "Name" %>
+  <th>#</th>
+<% end %>
 <th>
   <% form_remote_tag :url => {:action => 'sort',
                               :dir => (params[:sort] == field ? (params[:dir] == 'DESC' ? 'ASC' : 'DESC') : 'DESC'),
