@@ -1,65 +1,18 @@
 <h1>MLB Player Stats. from 1998</h1>
 <table>
   <tr>
-    <th>#</th>
-    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'name',
-                                     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
-	<%= submit_tag "Name" %>
+  <% @sorts.each do |sorts| %>
+    <th><% form_remote_tag :url => {:action => 'sort',
+                                    :dir => (params[:sort] == sorts ? (params[:dir] == 'DESC' ? 'ASC' : 'DESC') : 'DESC'),
+				    :sort => sorts} do %>
+	<%= submit_tag sorts %>
     <% end %></th>
-
-    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'team',
-				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
-	<%= submit_tag "Team" %>
-    <% end %></th>
-
-    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'AVG',
-				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
-	<%= submit_tag "AVG" %>
-    <% end %></th>
-
-    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'HR',
-				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
-	<%= submit_tag "HR" %>
-    <% end %></th>
-
-    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'RBI',
-				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
-	<%= submit_tag "RBI" %>
-    <% end %></th>
-    
-    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'Runs',
-				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
-	<%= submit_tag "Runs" %>
-    <% end %></th>
-
-    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'SB',
-				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
-	<%= submit_tag "SB" %>
-    <% end %></th>
-
-    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'OPS',
-				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
-	<%= submit_tag "OPS" %>
-    <% end %></th>
-    <th><% form_remote_tag :url => { :action => 'sort', :sort => 'GAMES',
-				     :dir => params[:dir] == 'DESC' ? 'ASC' : 'DESC'} do %>
-	<%= submit_tag "Games Played" %>
-    <% end %></th>
+  <% end %>
   </tr>
-<% num = 0 %>
-<% @players.each do |player| %>
-  <tr>
-    <td><%= num += 1 %></td>
-    <td><%=h player.name %></td>
-    <td><%=h player.team %></td>
-    <td><%=h number_with_precision(player.AVG, 3) %></td>
-    <td><%=h player.HR %></td>
-    <td><%=h player.RBI %></td>
-    <td><%=h player.RUNS %></td>
-    <td><%=h player.SB %></td>
-    <td><%=h number_with_precision(player.OPS, 3) %></td>
-    <td><%=h player.GAMES %></td>
-  </tr>
-<% end %>
+  <tbody id="p">
+    <%= render(:partial => "player", :collection => @players) %>
+  </tbody>
 </table>
 <br />
+
+<!-- :dir => (params[:sort] == sorts ? (params[:dir] == 'DESC' ? 'ASC' : 'DESC') : 'DESC'), -->
