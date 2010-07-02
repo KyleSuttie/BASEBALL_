@@ -1,5 +1,4 @@
-
-<tr>
+<tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
   <td><%=h player.name %></td>
   <td><%=h player.team %></td>
   <td><%=h number_with_precision(player.AVG, 3) %></td>

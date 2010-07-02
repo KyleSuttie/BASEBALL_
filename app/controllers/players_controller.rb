@@ -1,22 +1,22 @@
 class PlayersController < ApplicationController
   def index
     #debugger
-      @sorts = ['Name', 'Team', 'AVG', 'HR', 'RBI', 'RUNS', 'SB', 'OPS', 'GAMES']
+      @fields = ['Name', 'Team', 'AVG', 'HR', 'RBI', 'Runs', 'SB', 'OPS', 'Games']
     if params[:dir] != "ASC" and params[:dir] != "DESC"
-      @players = Player.find(:all,
-			     :conditions => "AVG != 'NaN'",
-			     :order => "AVG DESC",
-			     :limit => 25)
+      params[:page] = "1"
       params[:dir] = "DESC"
       params[:sort] = "AVG"
+      @players = Player.paginate :page => Integer(params[:page]),
+			         :conditions => "AVG != 'NaN' AND OPS != 'NaN'",
+			         :order => params[:sort] + ' ' + params[:dir]
       respond_to do |format|
         format.html
-      end
+      end 
     else
-      @players = Player.find(:all,
-			     :conditions => "AVG != 'NaN' AND OPS != 'NaN'",
-			     :order => params[:sort] + ' ' + params[:dir],
-			     :limit => 25)
+    #debugger
+      @players = Player.paginate :page => Integer(params[:page]),
+			         :conditions => "AVG != 'NaN' AND OPS != 'NaN'",
+			         :order => params[:sort] + ' ' + params[:dir] 
       respond_to do |format|
         format.js
       end
@@ -24,6 +24,8 @@ class PlayersController < ApplicationController
   end
 
   def sort
-    redirect_to :action => 'index', :sort => params[:sort], :dir => params[:dir]
+    redirect_to :action => 'index', :sort => params[:sort], :dir => params[:dir], :page => params[:page]
   end
 end
+
+#:all, :conditions => "AVG != 'NaN'", :order => "AVG DESC", :limit => 25

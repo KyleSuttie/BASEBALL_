@@ -1,18 +1,16 @@
-<h1>MLB Player Stats. from 1998</h1>
-<table>
-  <tr>
-  <% @sorts.each do |sorts| %>
-    <th><% form_remote_tag :url => {:action => 'sort',
-                                    :dir => (params[:sort] == sorts ? (params[:dir] == 'DESC' ? 'ASC' : 'DESC') : 'DESC'),
-				    :sort => sorts} do %>
-	<%= submit_tag sorts %>
-    <% end %></th>
-  <% end %>
-  </tr>
-  <tbody id="p">
-    <%= render(:partial => "player", :collection => @players) %>
-  </tbody>
-</table>
+<html>
+<div id="player">
+  <h1>MLB Player Stats. from 1998</h1>
+  <table>
+    <tbody id="f">
+      <%= render(:partial => "field", :collection => @fields, :object => params[:page]) %>
+    </tbody>
+    <tbody id="p">
+      <%= render(:partial => "player", :collection => @players) %>
+    </tbody>
+    <tbody id="pag">
+      <%= render(:partial => "page", :object => params[:page]) %>
+    </tbody>
+  </table>
+</div>
 <br />
-
-<!-- :dir => (params[:sort] == sorts ? (params[:dir] == 'DESC' ? 'ASC' : 'DESC') : 'DESC'), -->

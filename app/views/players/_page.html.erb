@@ -1,0 +1,18 @@
+<th>
+  <% if Integer(params[:page]) > 1 %>
+    <% form_remote_tag :url => {:action => 'sort',
+			        :dir => params[:dir],
+	  		        :sort => params[:sort],
+                                :page => (Integer(params[:page]) - 1)} do %>
+      <%= submit_tag "Previous 25" %>
+    <% end %>
+  <% end %>
+  <% if Integer(params[:page]) < 25 %>
+    <% form_remote_tag :url => {:action => 'sort',
+			        :dir => params[:dir],
+	  		        :sort => params[:sort],
+                                :page => (Integer(params[:page]) + 1)} do %>
+      <%= submit_tag "Next 25" %>
+    <% end %>
+  <% end %>
+</th>

@@ -1,0 +1,8 @@
+<th>
+  <% form_remote_tag :url => {:action => 'sort',
+                              :dir => (params[:sort] == field ? (params[:dir] == 'DESC' ? 'ASC' : 'DESC') : 'DESC'),
+	  		      :sort => field,
+			      :page => params[:page]} do %>
+    <%= submit_tag field %>
+  <% end %>
+</th>
