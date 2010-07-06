@@ -7,9 +7,12 @@
     <tbody id="p">
       <%= render(:partial => "player", :collection => @players, :object => params[:page], :object => params[:num]) %>
     </tbody>
-    </table>
-    <table id="pag">
-        <%= render(:partial => "page", :object => params[:page]) %>
-    </table>
+  </table>
+  <table id="pag">
+    <%= render(:partial => "page", :object => params[:page]) %>
+  </table>
+  <table id="u">
+    <%= render(:partial => "upload") %>
+  </table>
 </div>
 <br />

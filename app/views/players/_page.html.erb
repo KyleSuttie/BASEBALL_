@@ -2,7 +2,7 @@
   <th>
     <% form_remote_tag :url => {:action => 'sort',
 			        :dir => params[:dir],
-	  		        :sort => params[:sort],
+	  		        :field => params[:field],
                                 :page => 1} do %>
       <%= submit_tag "First" %>
     <% end %>
@@ -10,7 +10,7 @@
   <th>
     <% form_remote_tag :url => {:action => 'sort',
 			        :dir => params[:dir],
-	  		        :sort => params[:sort],
+	  		        :field => params[:field],
                                 :page => (Integer(params[:page]) - 1)} do %>
       <%= submit_tag "Previous 25" %>
     <% end %>
@@ -20,7 +20,7 @@
   <th>
     <% form_remote_tag :url => {:action => 'sort',
 			        :dir => params[:dir],
-	  		        :sort => params[:sort],
+	  		        :field => params[:field],
                                 :page => (Integer(params[:page]) + 1)} do %>
       <%= submit_tag "Next 25" %>
     <% end %>
@@ -28,7 +28,7 @@
   <th>
     <% form_remote_tag :url => {:action => 'sort',
 			        :dir => params[:dir],
-	  		        :sort => params[:sort],
+	  		        :field => params[:field],
                                 :page => 25} do %>
       <%= submit_tag "Last" %>
     <% end %>

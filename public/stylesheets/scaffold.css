@@ -52,3 +52,7 @@ a:hover { color: #fff; background-color:#000; }
   list-style: square;
 }
 
+#player .list-line-odd {
+  background: #dddddd
+}
+
