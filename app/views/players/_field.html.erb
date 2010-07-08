@@ -6,6 +6,6 @@
                               :dir => (params[:field] == field ? (params[:dir] == 'DESC' ? 'ASC' : 'DESC') : 'DESC'),
 	  		      :field => field,
 			      :page => params[:page]} do %>
-    <%= submit_tag field %>
+  <%= submit_tag field %>
   <% end %>
 </th>

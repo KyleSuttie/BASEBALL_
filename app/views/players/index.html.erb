@@ -1,18 +1,27 @@
+<html>
 <div id="player">
   <h1>MLB Player Stats. from 1998</h1>
-  <table>
+  <table border="1">
     <tbody id="f">
-      <%= render(:partial => "field", :collection => @fields, :object => params[:page]) %>
+      <%= render(:partial => "field",
+                 :collection => @fields,
+                 :object => params[:page]) %>
     </tbody>
     <tbody id="p">
-      <%= render(:partial => "player", :collection => @players, :object => params[:page], :object => params[:num]) %>
+      <%= render(:partial => "player",
+                 :collection => @players,
+                 :object => params[:page],
+                 :object => params[:num],
+                 :object => params[:field]) %>
     </tbody>
   </table>
   <table id="pag">
-    <%= render(:partial => "page", :object => params[:page]) %>
+    <%= render(:partial => "page",
+               :object => params[:page]) %>
   </table>
   <table id="u">
     <%= render(:partial => "upload") %>
   </table>
 </div>
 <br />
+</html>

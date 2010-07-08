@@ -53,6 +53,16 @@ a:hover { color: #fff; background-color:#000; }
 }
 
 #player .list-line-odd {
+  background: #ffffff
+}
+
+
+#player .list-line-even {
   background: #dddddd
 }
 
+.current {font-weight: bold;}
+
+td {text-align:center;}
+
+h1 {text-decoration:overline underline;}

@@ -1,16 +1,63 @@
 <% if Integer(params[:num]) == 0 %>
   <% params[:num] = ((Integer(params[:page]) - 1) * 25)%>
 <% end %>
+
 <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
   <% params[:num] = (Integer(params[:num]) + 1) %>
   <td><%= params[:num] %></td>
-  <td><%=h player.name %></td>
-  <td><%=h player.team %></td>
-  <td><%=h number_with_precision(player.AVG, 3) %></td>
-  <td><%=h player.HR %></td>
-  <td><%=h player.RBI %></td>
-  <td><%=h player.RUNS %></td>
-  <td><%=h player.SB %></td>
-  <td><%=h number_with_precision(player.OPS, 3) %></td>
-  <td><%=h player.GAMES %></td>
+
+  <% if params[:field] == "Name" %>
+    <td class="current"><%=h player.name %></td>
+  <% else %>
+    <td><%=h player.name %></td>
+  <% end %>
+
+  <% if params[:field] == "Team" %>
+    <td class="current"><%=h player.team %></td>
+  <% else %>
+    <td><%=h player.team %></td>
+  <% end %>
+
+  <% if params[:field] == "AVG" %>
+    <td class="current"><%=h  number_with_precision(player.AVG, 3) %></td>
+  <% else %>
+    <td><%=h  number_with_precision(player.AVG, 3) %></td>
+  <% end %>
+
+  <% if params[:field] == "HR" %>
+    <td class="current"><%=h player.HR %></td>
+  <% else %>
+    <td><%=h player.HR %></td>
+  <% end %>
+
+  <% if params[:field] == "RBI" %>
+    <td class="current"><%=h player.RBI %></td>
+  <% else %>
+    <td><%=h player.RBI %></td>
+  <% end %>
+
+  <% if params[:field] == "Runs" %>
+    <td class="current"><%=h player.RUNS %></td>
+  <% else %>
+    <td><%=h player.RUNS %></td>
+  <% end %>
+
+  <% if params[:field] == "SB" %>
+    <td class="current"><%=h player.SB %></td>
+  <% else %>
+    <td><%=h player.SB %></td>
+  <% end %>
+
+  <% if params[:field] == "OPS" %>
+    <td class="current"><%=h number_with_precision(player.OPS, 3) %></td>
+  <% else %>
+    <td><%=h number_with_precision(player.OPS, 3) %></td>
+  <% end %>
+
+  <% if params[:field] == "Games" %>
+    <td class="current"><%=h player.GAMES %></td>
+  <% else %>
+    <td><%=h player.GAMES %></td>
+  <% end %>
+
 </tr>
