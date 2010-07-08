@@ -58,9 +58,11 @@ a:hover { color: #fff; background-color:#000; }
 
 
 #player .list-line-even {
-  background: #dddddd
+  background: #eaf2d3
 }
 
+table {border-collapse:collapse;}
+table, th, td {border: 1px solid #A7C942;}
 .current {font-weight: bold;}
 
 td {text-align:center;}
