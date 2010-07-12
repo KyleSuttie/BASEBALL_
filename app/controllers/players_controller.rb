@@ -29,4 +29,12 @@ class PlayersController < ApplicationController
   def sort
     redirect_to :action => 'index', :field => params[:field], :dir => params[:dir], :page => params[:page]
   end
+
+  def upload
+    debugger
+    file = params[:file]
+    fname = file.original_filename
+    redirect_to :action => 'index', :tester => fname
+  end
+
 end

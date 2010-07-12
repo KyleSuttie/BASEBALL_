@@ -19,9 +19,9 @@
   <% end %>
 
   <% if params[:field] == "AVG" %>
-    <td class="current"><%=h  number_with_precision(player.AVG, 3) %></td>
+    <td class="current"><%=h  number_with_precision(player.AVG) %></td>
   <% else %>
-    <td><%=h  number_with_precision(player.AVG, 3) %></td>
+    <td><%=h  number_with_precision(player.AVG) %></td>
   <% end %>
 
   <% if params[:field] == "HR" %>
@@ -49,9 +49,9 @@
   <% end %>
 
   <% if params[:field] == "OPS" %>
-    <td class="current"><%=h number_with_precision(player.OPS, 3) %></td>
+    <td class="current"><%=h number_with_precision(player.OPS) %></td>
   <% else %>
-    <td><%=h number_with_precision(player.OPS, 3) %></td>
+    <td><%=h number_with_precision(player.OPS) %></td>
   <% end %>
 
   <% if params[:field] == "Games" %>

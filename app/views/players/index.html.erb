@@ -1,7 +1,6 @@
-<html>
 <div id="player">
   <h1>MLB Player Stats. from 1998</h1>
-  <table border="1">
+  <table id="table_one">
     <tbody id="f">
       <%= render(:partial => "field",
                  :collection => @fields,
@@ -22,6 +21,5 @@
   <table id="u">
     <%= render(:partial => "upload") %>
   </table>
+  <p><%= params[:tester] %></p>
 </div>
-<br />
-</html>
