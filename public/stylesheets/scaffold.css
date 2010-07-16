@@ -52,19 +52,3 @@ a:hover { color: #fff; background-color:#000; }
   list-style: square;
 }
 
-#player .list-line-odd {
-  background: #f9fdff
-}
-
-
-#player .list-line-even {
-  background: #eaf2d3
-}
-
-table {border-collapse:collapse;}
-table, th, td {border: 1px solid #A7C942;}
-.current {font-weight: bold;}
-
-td {text-align:center;}
-
-h1 {text-decoration:overline underline;}
