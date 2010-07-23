@@ -11,10 +11,23 @@
 
 ActiveRecord::Schema.define(:version => 20100622184425) do
 
+  create_table "divisions", :force => true do |t|
+    t.integer  "league_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "leagues", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "players", :force => true do |t|
     t.integer  "team_id"
     t.string   "name"
-    t.string   "team"
+    t.string   "teamname"
     t.string   "avg"
     t.integer  "hr"
     t.integer  "rbi"
@@ -27,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20100622184425) do
   end
 
   create_table "teams", :force => true do |t|
+    t.integer  "division_id"
     t.string   "city"
     t.string   "name"
     t.datetime "created_at"

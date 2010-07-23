@@ -1,22 +1,24 @@
-<% if field == "Name" %>
+<% if field == "name" %>
   <th>#</th>
 <% end %>
 <% if field == params[:field] %>
   <% current = true %>
 <% end %>
 <th>
+
   <% form_remote_tag :url => {:action => 'sort',
                               :dir => (params[:field] == field ? (params[:dir] == 'DESC' ? 'ASC' : 'DESC') : 'DESC'),
 	  		      :field => field,
+			      :currentteam => params[:currentteam],
 			      :page => params[:page]} do %>
     <% if current %>
       <% if params[:dir] == 'DESC' %>
-        <%= submit_tag field + ' v' %>
-      <% else %>
-        <%= submit_tag field + ' ^' %>
+        <%= submit_tag field.capitalize + ' v' %>
+      <% elsif params[:dir] == 'ASC' %>
+        <%= submit_tag field.capitalize + ' ^' %>
       <% end %>
     <% else %>
-      <%= submit_tag field %>
+      <%= submit_tag field.capitalize %>
     <% end %>
   <% end %>
 </th>

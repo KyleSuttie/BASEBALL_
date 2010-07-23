@@ -6,58 +6,58 @@
   <% params[:num] = (Integer(params[:num]) + 1) %>
   <td><%= params[:num] %></td>
 
-  <% if params[:field] == "Name" %>
+  <% if params[:field] == "name" %>
     <td class="current"><%=h player.name %></td>
   <% else %>
     <td><%=h player.name %></td>
   <% end %>
 
-  <% if params[:field] == "Team" %>
-    <td class="current"><%=h player.team %></td>
+  <% if params[:field] == "teamname" %>
+    <td class="current"><%=h player.teamname %></td>
   <% else %>
-    <td><%=h player.team %></td>
+    <td><%=h player.teamname %></td>
   <% end %>
 
-  <% if params[:field] == "AVG" %>
-    <td class="current"><%=h  number_with_precision(player.AVG) %></td>
+  <% if params[:field] == "avg" %>
+    <td class="current"><%=h  number_with_precision(player.avg) %></td>
   <% else %>
-    <td><%=h  number_with_precision(player.AVG) %></td>
+    <td><%=h  number_with_precision(player.avg) %></td>
   <% end %>
 
-  <% if params[:field] == "HR" %>
-    <td class="current"><%=h player.HR %></td>
+  <% if params[:field] == "hr" %>
+    <td class="current"><%=h player.hr %></td>
   <% else %>
-    <td><%=h player.HR %></td>
+    <td><%=h player.hr %></td>
   <% end %>
 
-  <% if params[:field] == "RBI" %>
-    <td class="current"><%=h player.RBI %></td>
+  <% if params[:field] == "rbi" %>
+    <td class="current"><%=h player.rbi %></td>
   <% else %>
-    <td><%=h player.RBI %></td>
+    <td><%=h player.rbi %></td>
   <% end %>
 
-  <% if params[:field] == "Runs" %>
-    <td class="current"><%=h player.RUNS %></td>
+  <% if params[:field] == "runs" %>
+    <td class="current"><%=h player.runs %></td>
   <% else %>
-    <td><%=h player.RUNS %></td>
+    <td><%=h player.runs %></td>
   <% end %>
 
-  <% if params[:field] == "SB" %>
-    <td class="current"><%=h player.SB %></td>
+  <% if params[:field] == "sb" %>
+    <td class="current"><%=h player.sb %></td>
   <% else %>
-    <td><%=h player.SB %></td>
+    <td><%=h player.sb %></td>
   <% end %>
 
-  <% if params[:field] == "OPS" %>
-    <td class="current"><%=h number_with_precision(player.OPS) %></td>
+  <% if params[:field] == "ops" %>
+    <td class="current"><%=h number_with_precision(player.ops) %></td>
   <% else %>
-    <td><%=h number_with_precision(player.OPS) %></td>
+    <td><%=h number_with_precision(player.ops) %></td>
   <% end %>
 
-  <% if params[:field] == "Games" %>
-    <td class="current"><%=h player.GAMES %></td>
+  <% if params[:field] == "games" %>
+    <td class="current"><%=h player.games %></td>
   <% else %>
-    <td><%=h player.GAMES %></td>
+    <td><%=h player.games %></td>
   <% end %>
 
 </tr>
