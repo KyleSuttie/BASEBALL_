@@ -2,7 +2,8 @@ class Player < ActiveRecord::Base
   belongs_to :team
   cattr_reader :per_page
   @@per_page = 25
-
+  
+  #file_column :filename
 
   def self.is_batter?(player)
     (player.elements[3].text != "Relief Pitcher") and
