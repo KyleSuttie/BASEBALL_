@@ -1,4 +1,4 @@
-page.replace_html("s", :partial => "select", :object => @teams, :object => params[:field], :object => params[:dir], :object => params[:page])
+
 page.replace_html("f", :partial => "field", :collection => @fields, :object => params[:page], :object => params[:currentteam])
 page.replace_html("p", :partial => "player", :collection => @players, :object => params[:page], :object => params[:num], :object => params[:field])
 page.replace_html("pag", :partial => "page", :object => params[:page])
