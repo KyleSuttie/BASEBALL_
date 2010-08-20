@@ -54,7 +54,7 @@ include REXML
       currentleague = League.create(:name => league.elements[1].text)
       league.elements.each("DIVISION"){ |division|
       currentdivision = Division.create(:league_id => currentleague.id,
-		        :name => division.elements[1].text)
+					:name => league.elements[1].text + ' ' + division.elements[1].text)
         division.elements.each("TEAM"){ |team|
         currentteam = Team.create(:division_id => currentdivision.id,
 		      :city => team.elements[1].text,
