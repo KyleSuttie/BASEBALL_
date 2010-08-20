@@ -12,10 +12,10 @@
     <td><%=h player.name %></td>
   <% end %>
 
-  <% if params[:field] == "teamname" %>
-    <td class="current"><%=h player.teamname %></td>
+  <% if params[:field] == "team" %>
+    <td class="current"><%=h player.team.city + ' ' + player.team.name %></td>
   <% else %>
-    <td><%=h player.teamname %></td>
+    <td><%=h player.team.city + ' ' + player.team.name %></td>
   <% end %>
 
   <% if params[:field] == "avg" %>

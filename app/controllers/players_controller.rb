@@ -4,7 +4,7 @@ include REXML
   def index
       debugger
       @teams = Team.find(:all, :order => 'name')
-      @fields = ['name', 'teamname', 'avg', 'hr', 'rbi', 'runs', 'sb', 'ops', 'games']
+      @fields = ['name', 'team', 'avg', 'hr', 'rbi', 'runs', 'sb', 'ops', 'games']
       currentteam = Integer(params[:currentteam])
     if params[:dir] != "ASC" and params[:dir] != "DESC"
       params[:page] = "1"
@@ -63,7 +63,6 @@ include REXML
             if (Player.is_batter?(player))
               Player.create(:team_id => currentteam.id,
 		            :name => player.elements[1].text + ' ' + player.elements[2].text,
-		            :teamname => currentteam.city + ' ' + currentteam.name,
 		            :avg => Player.get_avg(player),
 		            :hr => Player.get_hr(player),
 		            :rbi => Float(player.elements[12].text),

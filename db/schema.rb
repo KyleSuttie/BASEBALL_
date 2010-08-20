@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20100622184425) do
   create_table "players", :force => true do |t|
     t.integer  "team_id"
     t.string   "name"
-    t.string   "teamname"
     t.string   "avg"
     t.integer  "hr"
     t.integer  "rbi"

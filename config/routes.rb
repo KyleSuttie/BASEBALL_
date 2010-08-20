@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :teams, :has_many => [ :players ], :active_scaffold => true
   map.resources :teams
 
   map.resources :players
