@@ -16,6 +16,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.integer :division_id
       t.string :city
       t.string :name
+      t.string :filename
       t.timestamps
     end
     create_table :divisions do |t|

@@ -1,8 +1,36 @@
 require "rexml/document"
 class PlayersController < ApplicationController
 include REXML
+#=begin
+  active_scaffold :players do |config|
+    config.columns = [:name, :team, :avg, :hr, :rbi, :runs, :sb, :ops, :games]
+    list.sorting = {:avg => 'DESC'}
+  end
+
+  def conditions_for_collection
+    ['avg != ? AND ops != ?', 'NaN', 'NaN']  
+  end
+
+  ActiveScaffold.set_defaults do |config|
+    config.ignore_columns.add [:created_at, :updated_at]
+  end
+
+
+#=end
+
+
+
+
+
+
+
+
+
+
+
+=begin
   def index
-      debugger
+      #debugger
       @teams = Team.find(:all, :order => 'name')
       @fields = ['name', 'team', 'avg', 'hr', 'rbi', 'runs', 'sb', 'ops', 'games']
       currentteam = Integer(params[:currentteam])
@@ -10,7 +38,6 @@ include REXML
       params[:page] = "1"
       params[:dir] = "DESC"
       params[:field] = "avg"
-      
       @order = params[:field] + ' ' + params[:dir]
       @players = Player.paginate :page => Integer(params[:page]),
 				 :conditions => "avg != 'NaN' AND ops != 'NaN'",
@@ -41,6 +68,7 @@ include REXML
     redirect_to :action => 'index', :field => params[:field], :dir => params[:dir], :page => params[:page], :currentteam => params[:currentteam]
   end
 
+
   def upload
     Player.delete_all
     Team.delete_all
@@ -57,8 +85,8 @@ include REXML
 					:name => league.elements[1].text + ' ' + division.elements[1].text)
         division.elements.each("TEAM"){ |team|
         currentteam = Team.create(:division_id => currentdivision.id,
-		      :city => team.elements[1].text,
-		      :name => team.elements[2].text)
+				  :city => team.elements[1].text,
+				  :name => team.elements[2].text)
           team.elements.each("PLAYER"){ |player|
             if (Player.is_batter?(player))
               Player.create(:team_id => currentteam.id,
@@ -83,4 +111,5 @@ include REXML
     redirect_to :action => 'index', :currentteam => params[:currentteam]
   end
 
+=end
 end

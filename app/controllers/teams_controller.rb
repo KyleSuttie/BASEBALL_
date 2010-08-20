@@ -1,83 +1,73 @@
+
 class TeamsController < ApplicationController
-  # GET /teams
-  # GET /teams.xml
-  def index
-    @teams = Team.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @teams }
-    end
+  active_scaffold :teams do |config|
+    config.columns = [:city, :name, :division, :players]
+    list.sorting = {:city => 'ASC'}
   end
 
-  # GET /teams/1
-  # GET /teams/1.xml
-  def show
-    @team = Team.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @team }
-    end
+  ActiveScaffold.set_defaults do |config|
+    config.ignore_columns.add [:created_at, :updated_at]
   end
 
-  # GET /teams/new
-  # GET /teams/new.xml
-  def new
-    @team = Team.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @team }
-    end
-  end
 
-  # GET /teams/1/edit
-  def edit
-    @team = Team.find(params[:id])
-  end
 
-  # POST /teams
-  # POST /teams.xml
-  def create
-    @team = Team.new(params[:team])
 
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to(@team, :notice => 'Team was successfully created.') }
-        format.xml  { render :xml => @team, :status => :created, :location => @team }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @team.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  def upload
+    Player.delete_all
+    Team.delete_all
+    Division.delete_all
+    League.delete_all
 
-  # PUT /teams/1
-  # PUT /teams/1.xml
-  def update
-    @team = Team.find(params[:id])
+    file = params[:file]
+    doc = REXML::Document.new file
 
-    respond_to do |format|
-      if @team.update_attributes(params[:team])
-        format.html { redirect_to(@team, :notice => 'Team was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @team.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /teams/1
-  # DELETE /teams/1.xml
-  def destroy
-    @team = Team.find(params[:id])
-    @team.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(teams_url) }
-      format.xml  { head :ok }
-    end
+    doc.elements.each("SEASON/LEAGUE"){ |league|
+      currentleague = League.create(:name => league.elements[1].text)
+      league.elements.each("DIVISION"){ |division|
+      currentdivision = Division.create(:league_id => currentleague.id,
+					:name => league.elements[1].text + ' ' + division.elements[1].text)
+        division.elements.each("TEAM"){ |team|
+        currentteam = Team.create(:division_id => currentdivision.id,
+				  :city => team.elements[1].text,
+				  :name => team.elements[2].text)
+          team.elements.each("PLAYER"){ |player|
+            if (Player.is_batter?(player))
+              Player.create(:team_id => currentteam.id,
+		            :name => player.elements[1].text + ' ' + player.elements[2].text,
+		            :avg => Player.get_avg(player),
+		            :hr => Player.get_hr(player),
+		            :rbi => Float(player.elements[12].text),
+		            :runs => Integer(player.elements[7].text),
+		            :sb => Float(player.elements[13].text),
+		            :ops => Player.get_ops(player),
+		            :games => Integer(player.elements[4].text))
+            end
+          }
+        }
+      }
+    }
+    redirect_to :action => 'index'
   end
 end
+
+
+=begin
+  def index
+    @teams = Team.find(:all, :order => "name")
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def show
+    team = params[:id]
+    @teamname = Team.find(team).city + ' ' + Team.find(team).name
+    @players = Team.find(team).players
+    respond_to do |format|
+      format.html
+    end
+  end
+=end
+

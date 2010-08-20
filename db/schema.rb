@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20100622184425) do
     t.integer  "division_id"
     t.string   "city"
     t.string   "name"
+    t.string   "filename"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
