@@ -1,0 +1,37 @@
+<!-- 
+<div id="player">
+  <h1>MLB Player Stats. from 1998</h1>
+    <p id="s">
+      <body>
+        <p>Filter By Team<p>
+        <% form_tag '', :method => :put do %>
+         <%= select_tag ('currentteam', "<option>All</option>" + options_from_collection_for_select(@teams, :id, :name), :onchange => 'this.form.submit()') %>
+        <% end %>
+      </body>
+    </p>
+    <table>
+    <tbody id="f">
+      <%= render(:partial => "field",
+                 :collection => @fields,
+                 :object => params[:page],
+		 :object => params[:currentteam]) %>
+    </tbody>
+    
+    <tbody id="p">
+      <%= render(:partial => "player",
+                 :collection => @players,
+                 :object => params[:page],
+                 :object => params[:num],
+                 :object => params[:field]) %>
+    </tbody>
+  </table>
+  <table id="pag">
+    <%= render(:partial => "page",
+               :object => params[:page]) %>
+  </table>
+  <table id="u">
+    <%= render(:partial => "upload",
+	       :object => params[:currentteam]) %>
+  </table>
+</div>
+-->
