@@ -1,7 +1,7 @@
 require "rexml/document"
 class PlayersController < ApplicationController
 include REXML
-=begin
+
   active_scaffold :players do |config|
     config.columns = [:name, :team, :avg, :hr, :rbi, :runs, :sb, :ops, :games]
     list.sorting = {:avg => 'DESC'}
@@ -14,18 +14,13 @@ include REXML
   ActiveScaffold.set_defaults do |config|
     config.ignore_columns.add [:created_at, :updated_at]
   end
+end
 
-
-=end
-
-  def index
-    respond_to do |format|
-      format.html
-    end
-  end
-
-
-
+  #def index
+  #  respond_to do |format|
+  #    format.html
+  #  end
+  #end
 
 
 
@@ -68,7 +63,7 @@ include REXML
   def sort
     redirect_to :action => 'index', :field => params[:field], :dir => params[:dir], :page => params[:page], :currentteam => params[:currentteam]
   end
-=end
+
 
   def upload
     Player.delete_all
@@ -111,6 +106,6 @@ include REXML
     params[:currentteam] = nil
     redirect_to :action => 'index', :currentteam => params[:currentteam]
   end
+=end
 
 
-end
