@@ -2,34 +2,33 @@ require "rexml/document"
 class TeamsController < ApplicationController
 include REXML
 
-  def index
-    respond_to do |format|
-      format.html
-    end
-  end
-
-=begin
+#=begin
   active_scaffold :teams do |config|
-    config.columns = [:city, :name, :division, :players, :filename]
+    config.columns = [:city, :name, :division, :players]
     list.sorting = {:city => 'ASC'}
-    config.columns[:filename].label = "Upload"
+    
+    config.action_links.add 'upload_form', :label => "Upload", :type => :collection
   end
 
   ActiveScaffold.set_defaults do |config|
     config.ignore_columns.add [:created_at, :updated_at]
   end
-=end
+#=end
 
 
 
+  def upload_form
+    #debugger
+    render :partial => "upload"
+  end
+   
   def upload
-    debugger
-    file = params[:filename]
+    file = params[:file]
     doc = REXML::Document.new file
-    #Player.delete_all
-    #Team.delete_all
-    #Division.delete_all
-    #League.delete_all
+    Player.delete_all
+    Team.delete_all
+    Division.delete_all
+    League.delete_all
     doc.elements.each("SEASON/LEAGUE"){ |league|
       currentleague = League.create(:name => league.elements[1].text)
       league.elements.each("DIVISION"){ |division|

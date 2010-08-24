@@ -1,6 +1,3 @@
 <div id="team">
-    <% form_tag ( { :action => 'upload' }, :multipart => true) do %>
-      <%= file_column_field ('team', 'filename') %>
-      <%= submit_tag 'Upload' %>
-    <% end %>
+   <%= render(:partial => "upload") %>
 </div>
