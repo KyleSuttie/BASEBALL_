@@ -61,11 +61,3 @@ background-color: #EAF2D3
 .list-line-even{
 background-color: white;
 }
-
-table{
-border-collapse:collapse;
-}
-
-table, th, td{
-border: 1px solid black
-}

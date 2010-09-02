@@ -3,4 +3,9 @@
     <label for="file">File to Upload</label> <%= file_field_tag 'file' %>
     <%= submit_tag ( "Upload" ) %>
   <% end %>
+<br/>
+  <% form_tag ( { :action => 'clear' } ) do %>
+    <%= submit_tag ( "Clear Table" ) %>
+  <% end %>
+<br/>
 

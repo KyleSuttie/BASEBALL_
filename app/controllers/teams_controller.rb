@@ -6,7 +6,7 @@ include REXML
   active_scaffold :teams do |config|
     config.columns = [:city, :name, :division, :players]
     list.sorting = {:city => 'ASC'}
-    
+    config.columns[:division].form_ui = :select
     config.action_links.add 'upload_form', :label => "Upload", :type => :collection
   end
 
@@ -54,7 +54,15 @@ include REXML
         }
       }
     }
-    redirect_to :action => 'index'
+    redirect_to "http://localhost:3000/teams"
+  end
+
+  def clear
+    Player.delete_all
+    Team.delete_all
+    Division.delete_all
+    League.delete_all
+    redirect_to "http://localhost:3000/teams"
   end
 end
 

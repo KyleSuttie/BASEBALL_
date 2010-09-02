@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100622184425) do
+ActiveRecord::Schema.define(:version => 20100621175409) do
 
   create_table "divisions", :force => true do |t|
     t.integer  "league_id"

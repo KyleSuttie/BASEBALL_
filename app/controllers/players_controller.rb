@@ -4,11 +4,12 @@ include REXML
 
   active_scaffold :players do |config|
     config.columns = [:name, :team, :avg, :hr, :rbi, :runs, :sb, :ops, :games]
+    config.columns[:team].form_ui = :select
     list.sorting = {:avg => 'DESC'}
   end
 
   def conditions_for_collection
-    ['avg != ? AND ops != ?', 'NaN', 'NaN']  
+    ['avg != ? AND ops != ?', 'NaN', 'NaN']
   end
 
   ActiveScaffold.set_defaults do |config|
